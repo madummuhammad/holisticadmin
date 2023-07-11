@@ -1,0 +1,11 @@
+.main-sidebar .brand-link{
+	/*height: 80px;*/
+}
+
+.main-sidebar .brand-link img{
+	/*width: 100px;*/
+	width: 100%;
+	height: 50px;
+	object-fit: cover;
+	object-position: center;
+}
