@@ -42,7 +42,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar  elevation-4 sidebar-light-primary">
       <!-- Brand Logo -->
-      <a href="index3.html" class="brand-link">
+      <a href="{{url('/')}}" class="brand-link">
         <img src="{{url('assets')}}/img/logo.png" alt="AdminLTE Logo" style="opacity: .8">
       </a>
 
@@ -58,64 +58,263 @@
           </div>
         </div>
 
+        @php
+        $seg1=request()->segment(1);
+        $seg2=request()->segment(2);
+        @endphp
+
         <!-- Sidebar Menu -->
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
             <li class="nav-item">
-              <a href="{{url('/')}}" class="nav-link">
+              <a href="{{url('/')}}" class="nav-link @if($seg1=='') active @endif">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Dashboard
                 </p>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="{{url('/user')}}" class="nav-link">
+            <li class="nav-item @if($seg1=='user' OR $seg1=='professional') menu-open @endif">
+              <a href="#" class="nav-link  @if($seg1=='user' OR $seg1=='professional') active @endif">
                 <i class="nav-icon fas fa-user"></i>
                 <p>
                   User
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{url('/user')}}" class="nav-link @if($seg1=='user') active @endif">
+                    <i class="nav-icon fas fa-user"></i>
+                    <p>Pencari Jasa</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{url('/professional')}}" class="nav-link @if($seg1=='professional') active @endif">
+                    <i class="nav-icon fas fa-user"></i>
+                    <p>Professional</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item @if($seg1=='slider') menu-open @endif">
+              <a href="#" class="nav-link @if($seg1=='slider') active @endif">
+                <i class="nav-icon fas fa-image"></i>
+                <p>
+                  Slider
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{url('slider/homepage')}}" class="nav-link @if($seg1=='slider' AND $seg2=='homepage') active @endif">
+                    <i class="nav-icon far fa-images"></i>
+                    <p>Homepage</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{url('slider/product')}}" class="nav-link  @if($seg1=='slider' AND $seg2=='product') active @endif">
+                    <i class="nav-icon fas fa-images"></i>
+                    <p>Product</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item  @if($seg1=='category') menu-open @endif">
+              <a href="#" class="nav-link  @if($seg1=='category') active @endif">
+                <i class="nav-icon fas fa-th-large"></i>
+                <p>
+                  Kategori
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{url('category/product')}}" class="nav-link  @if($seg1=='category' AND $seg2=='product') active @endif">
+                    <i class="nav-icon far fa-circle nav-icon"></i>
+                    <p>Kategori Produk</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{url('category/service')}}" class="nav-link  @if($seg1=='category' AND $seg2=='service') active @endif">
+                    <i class="nav-icon far fa-circle nav-icon"></i>
+                    <p>Kategori Jasa</p>
+                  </a>
+                </li>
+              </ul>
+              <li class="nav-item  @if($seg1=='category') menu-open @endif">
+                <a href="#" class="nav-link  @if($seg1=='category') active @endif">
+                  <i class="nav-icon fas fa-th-large"></i>
+                  <p>
+                    Kategori Produk
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{url('category/product')}}" class="nav-link  @if($seg1=='category' AND $seg2=='product') active @endif">
+                      <i class="nav-icon far fa-circle nav-icon"></i>
+                      <p>Kategori</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{url('category/service')}}" class="nav-link  @if($seg1=='category' AND $seg2=='service') active @endif">
+                      <i class="nav-icon far fa-circle nav-icon"></i>
+                      <p>Sub Kategori</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </li>
+            <li class="nav-item  @if($seg1=='schedule' OR $seg1=='booked') menu-open @endif">
+              <a href="#" class="nav-link  @if($seg1=='schedule' OR $seg1=='booked') active @endif">
+                <i class="nav-icon fas fa-cogs"></i>
+                <p>
+                  Manage Schedule
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{url('/schedule')}}" class="nav-link @if($seg1=='schedule') active @endif">
+                    <i class="nav-icon far fa-circle nav-icon"></i>
+                    <p>
+                      Schedule
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{url('booked')}}" class="nav-link  @if($seg1=='booked') active @endif">
+                    <i class="nav-icon far fa-circle nav-icon"></i>
+                    <p>Booked</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="{{url('/review')}}" class="nav-link @if($seg1=='review') active @endif">
+                <i class="nav-icon fas fa-comments"></i>
+                <p>
+                  Manage Review
                 </p>
               </a>
             </li>
-          </ul>
-        </nav>
-        <!-- /.sidebar-menu -->
-      </div>
-      <!-- /.sidebar -->
-    </aside>
+            <li class="nav-item">
+              <a href="{{url('/rating')}}" class="nav-link @if($seg1=='rating') active @endif">
+                <i class="nav-icon far fa-star"></i>
+                <p>
+                  Manage Rating
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{url('/event')}}" class="nav-link @if($seg1=='event') active @endif">
+                <i class="nav-icon fas fa-calendar-alt"></i>
+                <p>
+                  Manage Event
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{url('/donation')}}" class="nav-link @if($seg1=='event') active @endif">
+               <i class="nav-icon fas fa-dollar-sign"></i>
+               <p>
+                Donation
+              </p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
 
-    <!-- Content Wrapper. Contains page content -->
-    {{$slot}}
+  <!-- Content Wrapper. Contains page content -->
+  @yield('content');
 
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+@livewireScripts
+<!-- jQuery -->
+<script src="{{url('assets')}}/plugins/jquery/jquery.min.js"></script>
+<script src="{{url('assets')}}/plugins/jquery-ui/jquery-ui.min.js"></script>
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+<script src="{{url('assets')}}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="{{url('assets')}}/plugins/chart.js/Chart.min.js"></script>
+<script src="{{url('assets')}}/plugins/sparklines/sparkline.js"></script>
+<script src="{{url('assets')}}/plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="{{url('assets')}}/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<script src="{{url('assets')}}/plugins/jquery-knob/jquery.knob.min.js"></script>
+<script src="{{url('assets')}}/plugins/moment/moment.min.js"></script>
+<script src="{{url('assets')}}/plugins/daterangepicker/daterangepicker.js"></script>
+<script src="{{url('assets')}}/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="{{url('assets')}}/plugins/summernote/summernote-bs4.min.js"></script>
+<script src="{{url('assets')}}/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="{{url('assets')}}/dist/js/adminlte.js"></script>
+<script src="{{url('assets')}}/dist/js/demo.js"></script>
+<script src="{{url('assets')}}/dist/js/pages/dashboard.js"></script>
+<script>
+  $(function () {
+    $('#summernote').summernote()
+    $('#reservation').daterangepicker();
+    $('#scheduleFilter').daterangepicker();
+    $('#bookedFilter').daterangepicker();
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
-  </div>
-  <!-- ./wrapper -->
-  @livewireScripts
-  <!-- jQuery -->
-  <script src="{{url('assets')}}/plugins/jquery/jquery.min.js"></script>
-  <script src="{{url('assets')}}/plugins/jquery-ui/jquery-ui.min.js"></script>
-  <script>
-    $.widget.bridge('uibutton', $.ui.button)
-  </script>
-  <script src="{{url('assets')}}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="{{url('assets')}}/plugins/chart.js/Chart.min.js"></script>
-  <script src="{{url('assets')}}/plugins/sparklines/sparkline.js"></script>
-  <script src="{{url('assets')}}/plugins/jqvmap/jquery.vmap.min.js"></script>
-  <script src="{{url('assets')}}/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-  <script src="{{url('assets')}}/plugins/jquery-knob/jquery.knob.min.js"></script>
-  <script src="{{url('assets')}}/plugins/moment/moment.min.js"></script>
-  <script src="{{url('assets')}}/plugins/daterangepicker/daterangepicker.js"></script>
-  <script src="{{url('assets')}}/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-  <script src="{{url('assets')}}/plugins/summernote/summernote-bs4.min.js"></script>
-  <script src="{{url('assets')}}/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-  <script src="{{url('assets')}}/dist/js/adminlte.js"></script>
-  <script src="{{url('assets')}}/dist/js/demo.js"></script>
-  <script src="{{url('assets')}}/dist/js/pages/dashboard.js"></script>
+    $('#reservation').on('apply.daterangepicker', function(ev, picker) {
+      var startDate = picker.startDate.format('DD-MM-YYYY');
+      var endDate = picker.endDate.format('DD-MM-YYYY');
+
+      var dateRange = '';
+      var currentDate = picker.startDate;
+      while (currentDate <= picker.endDate) {
+        dateRange += currentDate.format('DD-MM-YYYY') + '|';
+        currentDate = currentDate.clone().add(1, 'days');
+      }
+  dateRange = dateRange.slice(0, -1); // Menghapus karakter '|' terakhir
+
+  dataTable.column(4).search(dateRange, true, false).draw();
+});
+
+    $('#scheduleFilter').on('apply.daterangepicker', function(ev, picker) {
+      var startDate = picker.startDate.format('DD-MM-YYYY');
+      var endDate = picker.endDate.format('DD-MM-YYYY');
+
+      var dateRange = '';
+      var currentDate = picker.startDate;
+      while (currentDate <= picker.endDate) {
+        dateRange += currentDate.format('DD-MM-YYYY') + '|';
+        currentDate = currentDate.clone().add(1, 'days');
+      }
+  dateRange = dateRange.slice(0, -1); // Menghapus karakter '|' terakhir
+
+  dataTable.column(3).search(dateRange, true, false).draw();
+});
+
+    $('#bookedFilter').on('apply.daterangepicker', function(ev, picker) {
+      var startDate = picker.startDate.format('DD-MM-YYYY');
+      var endDate = picker.endDate.format('DD-MM-YYYY');
+
+      var dateRange = '';
+      var currentDate = picker.startDate;
+      while (currentDate <= picker.endDate) {
+        dateRange += currentDate.format('DD-MM-YYYY') + '|';
+        currentDate = currentDate.clone().add(1, 'days');
+      }
+  dateRange = dateRange.slice(0, -1); // Menghapus karakter '|' terakhir
+
+  dataTable.column(3).search(dateRange, true, false).draw();
+});
+
+  })
+</script>
 </body>
 </html>

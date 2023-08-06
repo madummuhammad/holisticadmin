@@ -18,6 +18,7 @@ class User extends Component
     public $email;
     public $password;
     public $country;
+    public $user_id;
 
     public function mount()
     {
@@ -53,6 +54,21 @@ class User extends Component
         })->paginate(2);
         $this->emit('dataInit');
         return view('livewire.user',$data);
+    }
+
+    public function editUser($userData){
+        $user=$this->userMethod->where('id',$userData['id'])->first();
+        if($user){
+            $this->user_id=$user->id;
+            $this->email=$user->email;
+            $this->first_name=$user->first_name;
+            $this->last_name=$user->last_name;
+            $this->password=$user->password_text;
+            $this->no_hp=$user->no_hp;
+            $this->country=$user->country;
+        } else {
+            return redirect()->to('/user');
+        }
     }
 
     public function add()

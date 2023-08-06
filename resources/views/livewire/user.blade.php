@@ -59,17 +59,11 @@
                         <td>{{$user->password_text}}</td>
                         <td>
                           <div class="btn-group btn-group-sm">
-                            <a href="#modal-edit{{$user->id}}" class="btn btn-info" data-toggle="modal"><i class="far fa-edit"></i></a>
+                            <button wire:click="editUser({{$user}})" data-target="#modal-edit" class="btn btn-info" data-toggle="modal"><i class="far fa-edit"></i></button>
                             <a  class="btn btn-danger"  data-toggle="modal" data-target="#modal-sm{{$user->id}}"><i class="fas fa-trash"></i></a>
                           </div>
                         </td>
                       </tr>
-
-                      
-                        <!-- <livewire:user.edit-user :user="$user" :key="$user->id"> -->
-                      <!-- </div> -->
-
-                      <!-- Delete -->
                       <div class="modal fade" id="modal-sm{{$user->id}}" wire:ignore.self>
                         <div class="modal-dialog modal-sm">
                           <div class="modal-content">
@@ -84,7 +78,7 @@
                             </div>
                             <div class="modal-footer justify-content-between">
                               <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                              <button type="button" class="btn btn-danger" wire:click="delete('{{$user->id}}')">Hapus</button>
+                              <button type="button" class="btn btn-danger" wire:click.debounce.500ms="delete('{{$user->id}}')">Hapus</button>
 
                             </div>
                           </div>
@@ -110,7 +104,6 @@
                     </div>
                   </div>
                 </div>
-                <!-- /.card-body -->
               </div>
               <!-- /.card -->
             </div>
@@ -194,14 +187,87 @@
         </div>
       </div>
     </div>
-
+    <div class="modal fade" id="modal-edit" wire:ignore.self>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Edit Pencari Jasa</h3>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form wire:submit.prevent="edit">
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email</label>
+                  <input type="email" class="form-control  @error('email') is-invalid @enderror" name="email" wire:model="email">
+                  @error('email')
+                  <div class="invalid-feedback">
+                    {{$message}}
+                  </div>
+                  @enderror
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Nama Depan</label>
+                  <input type="text" class="form-control  @error('first_name') is-invalid @enderror" name="first_name" wire:model="first_name">
+                  @error('first_name')
+                  <div class="invalid-feedback">
+                    {{$message}}
+                  </div>
+                  @enderror
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Nama Belakang</label>
+                  <input type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" wire:model="last_name">
+                  @error('last_name')
+                  <div class="invalid-feedback">
+                    {{$message}}
+                  </div>
+                  @enderror
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">No Hp</label>
+                  <input type="text" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" wire:model="no_hp">
+                  @error('no_hp')
+                  <div class="invalid-feedback">
+                    {{$message}}
+                  </div>
+                  @enderror
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" wire:model="password" id="exampleInputPassword1">
+                  @error('password')
+                  <div class="invalid-feedback">
+                    {{$message}}
+                  </div>
+                  @enderror
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Negara</label>
+                  <input type="text" class="form-control @error('country') is-invalid @enderror" name="country" wire:model="country">
+                  @error('country')
+                  <div class="invalid-feedback">
+                    {{$message}}
+                  </div>
+                  @enderror
+                </div>
+              </div>
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary" wire:target.debounce.500ms="edit">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <script>
     document.addEventListener('livewire:load', function () {
       Livewire.on('closeModal', function () {
         $('.modal').modal('hide');
         $(".modal-backdrop").remove();
-        // $('#modal-add').modal('hide');
       });
     });
   </script>

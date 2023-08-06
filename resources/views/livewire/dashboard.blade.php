@@ -1,3 +1,5 @@
+@extends('layouts.app')
+@section('content')
 <div>
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -21,9 +23,9 @@
                 <p>Profesional</p>
               </div>
               <div class="icon">
-<!--                 <i class="ion ion-bag"></i> -->
+                <!--                 <i class="ion ion-bag"></i> -->
               </div>
-              <a href="#" class="small-box-footer">Lebih lengkap <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{url('professional')}}" class="small-box-footer">Lebih lengkap <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <div class="col-lg-3 col-6">
@@ -36,35 +38,35 @@
               <div class="icon">
                 <!-- <i class="ion ion-stats-bars"></i> -->
               </div>
-              <a href="#" class="small-box-footer">Lebih lengkap <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{url('user')}}" class="small-box-footer">Lebih lengkap <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h3>{{$booking}}</h3>
 
                 <p>Booking</p>
               </div>
               <div class="icon">
                 <!-- <i class="ion ion-person-add"></i> -->
               </div>
-              <a href="#" class="small-box-footer">Lebih lengkap <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{url('booked')}}" class="small-box-footer">Lebih lengkap <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>65</h3>
+                <h3>Rp{{number_format($donation)}}</h3>
 
                 <p>Donasi</p>
               </div>
               <div class="icon">
                 <!-- <i class="ion ion-pie-graph"></i> -->
               </div>
-              <a href="#" class="small-box-footer">Lebih lengkap <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{url('donation')}}" class="small-box-footer">Lebih lengkap <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
         </div>
@@ -72,3 +74,4 @@
     </section>
   </div>
 </div>
+@endsection
