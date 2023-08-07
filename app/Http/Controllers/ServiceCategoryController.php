@@ -10,7 +10,12 @@ class ServiceCategoryController extends Controller
 {
     public function index()
     {
-        $data['category']=ServiceCategory::get();
+        $category=ServiceCategory::where('level','parent')->with('child')->whereDoesntHave('child')->where('can_be_deleted',1)->get();
+
+        foreach ($category as $key => $value) {
+            ServiceCategory::create(['name'=>'Other','level'=>'sub','can_be_deleted'=>0,'parent_id'=>$value->id]);
+        }
+        $data['category']=ServiceCategory::where('can_be_deleted',1)->get();
         return view('category-service',$data);
     }
 
@@ -25,7 +30,8 @@ class ServiceCategoryController extends Controller
             return back()->withErrors($validator)->withInput(['name'=>$name]);
         }
 
-        ServiceCategory::create(['name'=>$name]);
+        $category=ServiceCategory::create(['name'=>$name]);
+        ServiceCategory::create(['name'=>'Other','level'=>'sub','parent_id'=>$category->id,'can_be_deleted'=>0]);
         return back()->with('success', 'Berhasil menambahkan kategori jasa');
     }
 

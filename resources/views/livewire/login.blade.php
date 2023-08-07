@@ -1,7 +1,7 @@
 <div>
   <div class="login-box">
     <div class="login-logo">
-      <a href="../../index2.html"><b>Admin</b>Holistic Station</a>
+      <a href="/"><b>Admin</b>Holistic Station</a>
     </div>
     <div class="card">
       <div class="card-body login-card-body">

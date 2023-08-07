@@ -6,7 +6,9 @@ use App\Http\Livewire\Dashboard;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfessionalController;
 use App\Http\Controllers\ServiceCategoryController;
+use App\Http\Controllers\SubServiceCategoryController;
 use App\Http\Controllers\ProductCategoryController;
+use App\Http\Controllers\SubProductCategoryController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\EventController;
@@ -27,11 +29,13 @@ use App\Http\Controllers\RatingController;
 |
 */
 Route::get('/login',Login::class)->name('login');
+Route::get('/logout',Login::class)->name('logout');
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/',Dashboard::class);
 	Route::get('/dashboard',Dashboard::class);
 
 	Route::get('/user',[UserController::class,'index']);
+	Route::get('/user/logout',[UserController::class,'logout']);
 	Route::post('/user',[UserController::class,'add']);
 	Route::patch('/user/{id}',[UserController::class,'edit']);
 	Route::delete('/user/{id}',[UserController::class,'delete']);
@@ -98,10 +102,20 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::patch('/service/{id}',[ServiceCategoryController::class,'edit']);
 		Route::delete('/service/{id}',[ServiceCategoryController::class,'delete']);
 
+		Route::get('/service/sub',[SubServiceCategoryController::class,'index']);
+		Route::post('/service/sub',[SubServiceCategoryController::class,'add']);
+		Route::patch('/service/sub/{id}',[SubServiceCategoryController::class,'edit']);
+		Route::delete('/service/sub/{id}',[SubServiceCategoryController::class,'delete']);
+
 		Route::get('/product',[ProductCategoryController::class,'index']);
 		Route::post('/product',[ProductCategoryController::class,'add']);
 		Route::patch('/product/{id}',[ProductCategoryController::class,'edit']);
 		Route::delete('/product/{id}',[ProductCategoryController::class,'delete']);
+
+		Route::get('/product/sub',[SubProductCategoryController::class,'index']);
+		Route::post('/product/sub',[SubProductCategoryController::class,'add']);
+		Route::patch('/product/sub/{id}',[SubProductCategoryController::class,'edit']);
+		Route::delete('/product/sub/{id}',[SubProductCategoryController::class,'delete']);
 	});
 });
 

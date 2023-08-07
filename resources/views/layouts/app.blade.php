@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="{{url('assets')}}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="{{url('assets')}}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="{{url('assets')}}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <link rel="icon" type="image/x-icon" href="{{url('favicon.svg')}}">
   @livewireStyles
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -34,6 +35,11 @@
         <li class="nav-item">
           <a class="nav-link" data-widget="fullscreen" href="#" role="button">
             <i class="fas fa-expand-arrows-alt"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  href="{{url('user/logout')}}">
+            <i class="fas fa-sign-out-alt"></i>
           </a>
         </li>
       </ul>
@@ -61,6 +67,7 @@
         @php
         $seg1=request()->segment(1);
         $seg2=request()->segment(2);
+        $seg3=request()->segment(3);
         @endphp
 
         <!-- Sidebar Menu -->
@@ -102,7 +109,7 @@
               <a href="#" class="nav-link @if($seg1=='slider') active @endif">
                 <i class="nav-icon fas fa-image"></i>
                 <p>
-                  Slider
+                  Banner
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
@@ -121,51 +128,51 @@
                 </li>
               </ul>
             </li>
-            <li class="nav-item  @if($seg1=='category') menu-open @endif">
-              <a href="#" class="nav-link  @if($seg1=='category') active @endif">
+            <li class="nav-item  @if($seg1=='category' AND $seg2=='product') menu-open @endif">
+              <a href="#" class="nav-link  @if($seg1=='category' AND $seg2=='product') active @endif">
                 <i class="nav-icon fas fa-th-large"></i>
                 <p>
-                  Kategori
+                  Kategori Produk
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{url('category/product')}}" class="nav-link  @if($seg1=='category' AND $seg2=='product') active @endif">
+                  <a href="{{url('category/product')}}" class="nav-link  @if($seg1=='category' AND $seg2=='product' AND $seg3!=='sub') active @endif">
                     <i class="nav-icon far fa-circle nav-icon"></i>
-                    <p>Kategori Produk</p>
+                    <p>Parent Ketagori</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{url('category/service')}}" class="nav-link  @if($seg1=='category' AND $seg2=='service') active @endif">
+                  <a href="{{url('category/product/sub')}}" class="nav-link  @if($seg1=='category' AND $seg2=='product' AND $seg3=='sub') active @endif">
                     <i class="nav-icon far fa-circle nav-icon"></i>
-                    <p>Kategori Jasa</p>
+                    <p>Sub Kategori</p>
                   </a>
                 </li>
               </ul>
-              <li class="nav-item  @if($seg1=='category') menu-open @endif">
-                <a href="#" class="nav-link  @if($seg1=='category') active @endif">
-                  <i class="nav-icon fas fa-th-large"></i>
-                  <p>
-                    Kategori Produk
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="{{url('category/product')}}" class="nav-link  @if($seg1=='category' AND $seg2=='product') active @endif">
-                      <i class="nav-icon far fa-circle nav-icon"></i>
-                      <p>Kategori</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="{{url('category/service')}}" class="nav-link  @if($seg1=='category' AND $seg2=='service') active @endif">
-                      <i class="nav-icon far fa-circle nav-icon"></i>
-                      <p>Sub Kategori</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
+            </li>
+            <li class="nav-item  @if($seg1=='category' AND $seg2=='service') menu-open @endif">
+              <a href="#" class="nav-link  @if($seg1=='category' AND $seg2=='service') active @endif">
+                <i class="nav-icon fas fa-th-large"></i>
+                <p>
+                  Kategori Jasa
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{url('category/service')}}" class="nav-link  @if($seg1=='category' AND $seg2=='service' AND $seg3!=='sub') active @endif">
+                    <i class="nav-icon far fa-circle nav-icon"></i>
+                    <p>Parent Kategori</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{url('category/service/sub')}}" class="nav-link  @if($seg1=='category' AND $seg2=='service' AND $seg3=='sub') active @endif">
+                    <i class="nav-icon far fa-circle nav-icon"></i>
+                    <p>Sub Kategori</p>
+                  </a>
+                </li>
+              </ul>
             </li>
             <li class="nav-item  @if($seg1=='schedule' OR $seg1=='booked') menu-open @endif">
               <a href="#" class="nav-link  @if($seg1=='schedule' OR $seg1=='booked') active @endif">
@@ -217,7 +224,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{url('/donation')}}" class="nav-link @if($seg1=='event') active @endif">
+              <a href="{{url('/donation')}}" class="nav-link @if($seg1=='donation') active @endif">
                <i class="nav-icon fas fa-dollar-sign"></i>
                <p>
                 Donation

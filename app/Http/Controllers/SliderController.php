@@ -9,7 +9,8 @@ class SliderController extends Controller
     public function homepage()
     {
         $data['type']='homepage';
-        $data['sliders']=Slider::where('type','homepage')->get();
+        $data['sliders']=Slider::where('type','homepage')->where('main_banner',0)->get();
+        $data['banners']=Slider::where('type','homepage')->where('main_banner',1)->get();
         return view('slider',$data);
     }
 

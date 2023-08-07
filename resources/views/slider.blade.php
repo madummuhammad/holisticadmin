@@ -17,6 +17,79 @@
 					<div class="col-12">
 						<div class="card">
 							<div class="card-body">
+								<table class="table table-bordered table-striped" id="example2">
+									<thead>
+										<tr>
+											<th>Image</th>
+											<th>Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach($banners as $key => $value)
+										<tr>
+											<td>
+												<img class="img-fluid" style="object-position: center;object-fit: cover;" src="{{$value->image}}" alt="">
+											</td>
+											<td>
+												<div class="btn-group btn-group-sm">
+													<button data-target="#modal-edit{{$value->id}}"  class="btn btn-info" data-toggle="modal"><i class="far fa-edit"></i></button>
+												</div>
+											</td>
+										</tr>
+										<div class="modal fade" id="modal-edit{{$value->id}}">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="card card-primary">
+														<div class="card-header">
+															<h3 class="card-title">Edit Main Banner</h3>
+															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+														</div>
+														<form action="{{url('slider/edit')}}/{{$value->id}}" method="POST" enctype="multipart/form-data">
+															@csrf
+															<div class="card-body">
+																@if ($value->image)
+																<img src="{{$value->image}}" width="100" class="img-fluid" id="preview{{$key}}" alt="Preview">
+																@else
+																<img src="{{ asset('path/to/default/image.jpg') }}" width="100" id="preview{{$key}}" class="img-fluid" alt="Default Image">
+																@endif
+																<div class="form-group">
+																	<label for="exampleInputFile">File input</label>
+																	<div class="input-group">
+																		<div class="custom-file">
+																			<input type="file" class="custom-file-input" name="image" onchange="updateFilename(this)" id="{{$key}}">
+																			<label class="custom-file-label" for="exampleInputFile">Pilih file</label>
+																		</div>
+																	</div>
+																</div>
+																<input type="text" name="type" value="{{$type}}" hidden>
+															</div>
+
+
+															<div class="card-footer">
+																<button type="submit" class="btn btn-primary">Submit</button>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+										@endforeach
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+							<div class="card-body">
 								<div class="row">
 									<div class="col-sm-6 col-12">
 										<a data-target="#modal-add" data-toggle="modal" class="btn btn-primary btn-sm mb-3"><i class="fas fa-plus"></i></a>

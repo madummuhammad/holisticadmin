@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Validation\Rule;
+use Auth;
 class UserController extends Controller
 {
     public $type;
@@ -54,6 +55,12 @@ class UserController extends Controller
             'country' => $data['country'],
         ]);
         return back()->with('success', 'Berhasil menambahkan pencari jasa');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login');
     }
 
     public function edit($id)

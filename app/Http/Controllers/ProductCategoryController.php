@@ -9,7 +9,12 @@ class ProductCategoryController extends Controller
 {
     public function index()
     {
-        $data['category']=ProductCategory::get();
+        $category=ProductCategory::where('level','parent')->with('child')->whereDoesntHave('child')->where('can_be_deleted',1)->get();
+
+        foreach ($category as $key => $value) {
+            ProductCategory::create(['name'=>'Other','level'=>'sub','can_be_deleted'=>0,'parent_id'=>$value->id]);
+        }
+        $data['category']=ProductCategory::where('level','parent')->where('can_be_deleted',1)->get();
         return view('category-product',$data);
     }
 
@@ -24,7 +29,9 @@ class ProductCategoryController extends Controller
             return back()->withErrors($validator)->withInput(['name'=>$name]);
         }
 
-        ProductCategory::create(['name'=>$name]);
+        $category=ProductCategory::create(['name'=>$name,'level'=>'parent']);
+
+        ProductCategory::create(['name'=>'Other','level'=>'sub','parent_id'=>$category->id,'can_be_deleted'=>0]);
         return back()->with('success', 'Berhasil menambahkan kategori jasa');
     }
 
