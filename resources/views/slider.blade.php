@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+@php $seg2=request()->segment(2); @endphp
 <div>
 	<div class="content-wrapper">
 		<section class="content-header">
@@ -11,6 +12,7 @@
 				</div>
 			</div>
 		</section>
+		@if($seg2=='homepage')
 		<section class="content">
 			<div class="container-fluid">
 				<div class="row">
@@ -63,6 +65,36 @@
 																		</div>
 																	</div>
 																</div>
+																<div class="form-group">
+																	<label for="exampleInputEmail1">Caption</label>
+																	<input type="text" name="type" value="{{$type}}" hidden>
+																	<input type="text" class="form-control @error('caption') is-invalid @enderror" name="caption" value="{{$value->caption}}">
+																	@error('caption')
+																	<div class="invalid-feedback">
+																		{{$message}}
+																	</div>
+																	@enderror
+																</div>
+																<div class="form-group">
+																	<label for="exampleInputEmail1">Sub Caption</label>
+																	<input type="text" name="type" value="{{$type}}" hidden>
+																	<input type="text" class="form-control @error('sub_caption') is-invalid @enderror" name="sub_caption" value="{{$value->sub_caption}}">
+																	@error('sub_caption')
+																	<div class="invalid-feedback">
+																		{{$message}}
+																	</div>
+																	@enderror
+																</div>
+																<div class="form-group">
+																	<label for="exampleInputEmail1">Warna</label>
+																	<input type="text" name="type" value="{{$type}}" hidden>
+																	<input type="color" class="form-control @error('color') is-invalid @enderror" name="color" value="{{$value->color}}">
+																	@error('color')
+																	<div class="invalid-feedback">
+																		{{$message}}
+																	</div>
+																	@enderror
+																</div>
 																<input type="text" name="type" value="{{$type}}" hidden>
 															</div>
 
@@ -84,6 +116,7 @@
 				</div>
 			</div>
 		</section>
+		@endif
 		<section class="content">
 			<div class="container-fluid">
 				<div class="row">

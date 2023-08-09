@@ -17,6 +17,7 @@ use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\RatingController;
+use App\Http\Controllers\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,11 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/add',[SliderController::class,'add']);
 		Route::post('/edit/{id}',[SliderController::class,'edit']);
 		Route::delete('/delete/{id}',[SliderController::class,'delete']);
+	});
+
+	Route::group(['prefix'=>'setting'],function(){
+		Route::get('/',[SettingController::class,'index']);
+		Route::patch('/',[SettingController::class,'edit']);
 	});
 
 	Route::group(['prefix'=>'service'],function(){

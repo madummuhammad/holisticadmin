@@ -15,7 +15,7 @@ class ServiceCategoryController extends Controller
         foreach ($category as $key => $value) {
             ServiceCategory::create(['name'=>'Other','level'=>'sub','can_be_deleted'=>0,'parent_id'=>$value->id]);
         }
-        $data['category']=ServiceCategory::where('can_be_deleted',1)->get();
+        $data['category']=ServiceCategory::where('can_be_deleted',1)->where('level','parent')->get();
         return view('category-service',$data);
     }
 

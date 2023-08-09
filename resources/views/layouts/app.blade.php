@@ -71,7 +71,7 @@
         @endphp
 
         <!-- Sidebar Menu -->
-        <nav class="mt-2">
+        <nav class="mt-2 pb-5">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
             <li class="nav-item">
@@ -140,7 +140,7 @@
                 <li class="nav-item">
                   <a href="{{url('category/product')}}" class="nav-link  @if($seg1=='category' AND $seg2=='product' AND $seg3!=='sub') active @endif">
                     <i class="nav-icon far fa-circle nav-icon"></i>
-                    <p>Parent Ketagori</p>
+                    <p>Parent Kategori</p>
                   </a>
                 </li>
                 <li class="nav-item">
@@ -231,21 +231,29 @@
               </p>
             </a>
           </li>
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside>
+          <li class="nav-item">
+            <a href="{{url('/setting')}}" class="nav-link @if($seg1=='setting') active @endif">
+             <i class="nav-icon fas fa-cog"></i>
+             <p>
+              Setting
+            </p>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
 
-  <!-- Content Wrapper. Contains page content -->
-  @yield('content');
+<!-- Content Wrapper. Contains page content -->
+@yield('content');
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+  <!-- Control sidebar content goes here -->
+</aside>
+<!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
 @livewireScripts

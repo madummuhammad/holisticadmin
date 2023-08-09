@@ -42,18 +42,24 @@ class SliderController extends Controller
     {
         $type=$request->type;
         $caption=$request->caption;
+        $sub_caption=$request->sub_caption;
+        $color=$request->color;
         $image=$this->upload($request);
 
         if($request->file('image')){
             $data=[
                 'type'=>$type,
                 'caption'=>$caption,
-                'image'=>$image
+                'sub_caption'=>$sub_caption,
+                'color'=>$color,
+                'image'=>$image,
             ];
         } else {
           $data=[
             'type'=>$type,
             'caption'=>$caption,
+            'sub_caption'=>$sub_caption,
+            'color'=>$color,
         ];  
     }
 
