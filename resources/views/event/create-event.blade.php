@@ -54,6 +54,7 @@
 												</div>
 												<div class="card-body">
 													<textarea id="summernote" name="content">
+														
 													</textarea>
 												</div>
 											</div>

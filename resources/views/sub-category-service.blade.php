@@ -86,6 +86,7 @@
 									<tbody>
 										@php $no=1; @endphp
 										@foreach($category as $key => $value)
+										@if($value->can_be_deleted==1)
 										<tr>
 											<td>
 												{{$no++}}
@@ -168,6 +169,20 @@
 												</div>
 											</div>
 										</div>
+										@endif
+										@endforeach
+											@foreach($category as $key => $value)
+										@if($value->can_be_deleted==0)
+										<tr>
+											<td>
+												{{$no++}}
+											</td>
+											<td>{{$value->name}}</td>
+											<td>{{$value->parent->name}}</td>
+											<td>
+											</td>
+										</tr>
+										@endif
 										@endforeach
 									</tbody>
 								</table>

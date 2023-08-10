@@ -58,6 +58,19 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::group(['prefix'=>'setting'],function(){
 		Route::get('/',[SettingController::class,'index']);
 		Route::patch('/',[SettingController::class,'edit']);
+		Route::patch('/privacy_policy',[SettingController::class,'privacy_policy']);
+		Route::patch('/about_us',[SettingController::class,'about_us']);
+		Route::patch('/donation',[SettingController::class,'donation']);
+	});
+	Route::group(['prefix'=>'faq'],function(){
+		Route::get('/',[SettingController::class,'faq']);
+		Route::post('/question',[SettingController::class,'add_question']);
+		Route::patch('/question/{id}',[SettingController::class,'edit_question']);
+		Route::delete('/question/{id}',[SettingController::class,'delete_question']);
+
+		Route::patch('/answer',[SettingController::class,'add_answer']);
+		// Route::patch('/answer/{id}',[SettingController::class,'edit_answer']);
+		// Route::delete('/answer/{id}',[SettingController::class,'delete_answer']);
 	});
 
 	Route::group(['prefix'=>'service'],function(){

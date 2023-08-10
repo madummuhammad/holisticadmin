@@ -231,14 +231,37 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item  @if($seg1=='setting' OR $seg2=='faq') menu-open @endif">
+            <a href="#" class="nav-link  @if($seg1=='category' AND $seg2=='product') active @endif">
+              <i class="nav-icon fas fa-cog"></i>
+              <p>
+                Setting
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url('setting')}}" class="nav-link  @if($seg1=='setting') active @endif">
+                  <i class="nav-icon far fa-circle nav-icon"></i>
+                  <p>General Setting</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('faq')}}" class="nav-link  @if($seg1=='faq') active @endif">
+                  <i class="nav-icon far fa-circle nav-icon"></i>
+                  <p>FAQ</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+<!--           <li class="nav-item">
             <a href="{{url('/setting')}}" class="nav-link @if($seg1=='setting') active @endif">
              <i class="nav-icon fas fa-cog"></i>
              <p>
               Setting
             </p>
           </a>
-        </li>
+        </li> -->
       </ul>
     </nav>
     <!-- /.sidebar-menu -->
@@ -280,6 +303,8 @@
 <script>
   $(function () {
     $('#summernote').summernote()
+    $('#about_us').summernote()
+    $('#donation').summernote()
     $('#reservation').daterangepicker();
     $('#scheduleFilter').daterangepicker();
     $('#bookedFilter').daterangepicker();

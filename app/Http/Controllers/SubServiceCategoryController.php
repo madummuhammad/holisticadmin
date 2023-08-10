@@ -11,7 +11,7 @@ class SubServiceCategoryController extends Controller
     public function index()
     {
         $data['parent']=ServiceCategory::where('level','parent')->orderBy('created_at','ASC')->get();
-        $data['category']=ServiceCategory::where('level','sub')->where('can_be_deleted',1)->with('parent')->orderBy('created_at','ASC')->get();
+        $data['category']=ServiceCategory::where('level','sub')->whereHas('parent')->orderBy('created_at','ASC')->get();
         return view('sub-category-service',$data);
     }
 

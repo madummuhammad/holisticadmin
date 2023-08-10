@@ -10,12 +10,12 @@ class ServiceCategoryController extends Controller
 {
     public function index()
     {
-        $category=ServiceCategory::where('level','parent')->with('child')->whereDoesntHave('child')->where('can_be_deleted',1)->get();
+        // $category=ServiceCategory::where('level','parent')->with('child')->whereDoesntHave('child')->where('can_be_deleted',1)->get();
 
-        foreach ($category as $key => $value) {
-            ServiceCategory::create(['name'=>'Other','level'=>'sub','can_be_deleted'=>0,'parent_id'=>$value->id]);
-        }
-        $data['category']=ServiceCategory::where('can_be_deleted',1)->where('level','parent')->get();
+        // foreach ($category as $key => $value) {
+        //     ServiceCategory::create(['name'=>'Other','level'=>'sub','can_be_deleted'=>0,'parent_id'=>$value->id]);
+        // }
+        $data['category']=ServiceCategory::where('level','parent')->orderBy('created_at','ASC')->get();
         return view('category-service',$data);
     }
 
