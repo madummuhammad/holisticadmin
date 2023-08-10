@@ -31,7 +31,7 @@ class ProductCategoryController extends Controller
 
         $category=ProductCategory::create(['name'=>$name,'level'=>'parent']);
 
-        ProductCategory::create(['name'=>'Other','level'=>'sub','parent_id'=>$category->id,'can_be_deleted'=>0]);
+        ProductCategory::create(['name'=>'OTHERS','level'=>'sub','parent_id'=>$category->id,'can_be_deleted'=>0]);
         return back()->with('success', 'Berhasil menambahkan kategori jasa');
     }
 

@@ -100,7 +100,7 @@
                 <li class="nav-item">
                   <a href="{{url('/professional')}}" class="nav-link @if($seg1=='professional') active @endif">
                     <i class="nav-icon fas fa-user"></i>
-                    <p>Professional</p>
+                    <p>Praktisi</p>
                   </a>
                 </li>
               </ul>
