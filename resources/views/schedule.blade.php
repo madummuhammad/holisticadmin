@@ -62,7 +62,11 @@
 										@foreach($schedule as $value)
 										<tr>
 											<td>{{$no++}}</td>
-											<td>{{$value->by_user->first_name}} {{$value->by_user->last_name}}</td>
+											<td>
+												@if($value->by_user)
+												{{$value->by_user->first_name}} {{$value->by_user->last_name}}
+												@endif
+											</td>
 											<td>{{$value->service->name}}</td>
 											<td>{{date('d-m-Y',strtotime($value->date))}}</td>
 											<td>{{date('H:i',strtotime($value->time_from))}} - {{date('H:i',strtotime($value->time_to))}}</td>

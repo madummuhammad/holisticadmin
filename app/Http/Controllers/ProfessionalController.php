@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Service;
+use App\Models\Product;
 use Illuminate\Validation\Rule;
 class ProfessionalController extends Controller
 {
@@ -100,6 +102,8 @@ class ProfessionalController extends Controller
 
     public function delete($id)
     {
+        Service::where('user_id',$id)->delete();
+        Product::where('user_id',$id)->delete();
         User::where('id',$id)->delete();
         return back()->with('success', 'Berhasil menghapus professional');
     }

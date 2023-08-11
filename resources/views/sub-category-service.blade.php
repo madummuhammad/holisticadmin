@@ -78,7 +78,7 @@
 									<thead>
 										<tr>
 											<th>No</th>
-											<th>Nama</th>
+											<th>Nama Sub Kategori</th>
 											<th>Kategori Induk</th>
 											<th>Action</th>
 										</tr>
@@ -113,7 +113,7 @@
 															</button>
 														</div>
 														<div class="modal-body">
-															<p>Anda akan menghapus ini?</p>
+															<p>Anda akan menghapus {{$value->name}}?</p>
 														</div>
 														<div class="modal-footer justify-content-between">
 															<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
@@ -169,19 +169,6 @@
 												</div>
 											</div>
 										</div>
-										@endif
-										@endforeach
-											@foreach($category as $key => $value)
-										@if($value->can_be_deleted==0)
-										<tr>
-											<td>
-												{{$no++}}
-											</td>
-											<td>{{$value->name}}</td>
-											<td>{{$value->parent->name}}</td>
-											<td>
-											</td>
-										</tr>
 										@endif
 										@endforeach
 									</tbody>

@@ -14,7 +14,7 @@ class ProductCategoryController extends Controller
         // foreach ($category as $key => $value) {
         //     ProductCategory::create(['name'=>'Other','level'=>'sub','can_be_deleted'=>0,'parent_id'=>$value->id]);
         // }
-        $data['category']=ProductCategory::where('level','parent')->orderBy('created_at','ASC')->get();
+        $data['category']=ProductCategory::where('level','parent')->orderBy('name','ASC')->get();
         return view('category-product',$data);
     }
 
@@ -31,7 +31,7 @@ class ProductCategoryController extends Controller
 
         $category=ProductCategory::create(['name'=>$name,'level'=>'parent']);
 
-        ProductCategory::create(['name'=>'OTHERS','level'=>'sub','parent_id'=>$category->id,'can_be_deleted'=>0]);
+        ProductCategory::create(['name'=>'OTHER PRODUCTS','level'=>'sub','parent_id'=>$category->id,'can_be_deleted'=>0]);
         return back()->with('success', 'Berhasil menambahkan kategori jasa');
     }
 

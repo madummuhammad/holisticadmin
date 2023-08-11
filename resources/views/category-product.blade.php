@@ -98,7 +98,7 @@
 															</button>
 														</div>
 														<div class="modal-body">
-															<p>Anda akan menghapus {{$value->first_name}} {{$value->last_name}}?</p>
+															<p>Anda akan menghapus {{$value->name}}?</p>
 														</div>
 														<div class="modal-footer justify-content-between">
 															<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>

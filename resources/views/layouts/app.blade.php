@@ -128,29 +128,6 @@
                 </li>
               </ul>
             </li>
-            <li class="nav-item  @if($seg1=='category' AND $seg2=='product') menu-open @endif">
-              <a href="#" class="nav-link  @if($seg1=='category' AND $seg2=='product') active @endif">
-                <i class="nav-icon fas fa-th-large"></i>
-                <p>
-                  Kategori Produk
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{url('category/product')}}" class="nav-link  @if($seg1=='category' AND $seg2=='product' AND $seg3!=='sub') active @endif">
-                    <i class="nav-icon far fa-circle nav-icon"></i>
-                    <p>Parent Kategori</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{url('category/product/sub')}}" class="nav-link  @if($seg1=='category' AND $seg2=='product' AND $seg3=='sub') active @endif">
-                    <i class="nav-icon far fa-circle nav-icon"></i>
-                    <p>Sub Kategori</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
             <li class="nav-item  @if($seg1=='category' AND $seg2=='service') menu-open @endif">
               <a href="#" class="nav-link  @if($seg1=='category' AND $seg2=='service') active @endif">
                 <i class="nav-icon fas fa-th-large"></i>
@@ -168,6 +145,29 @@
                 </li>
                 <li class="nav-item">
                   <a href="{{url('category/service/sub')}}" class="nav-link  @if($seg1=='category' AND $seg2=='service' AND $seg3=='sub') active @endif">
+                    <i class="nav-icon far fa-circle nav-icon"></i>
+                    <p>Sub Kategori</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item  @if($seg1=='category' AND $seg2=='product') menu-open @endif">
+              <a href="#" class="nav-link  @if($seg1=='category' AND $seg2=='product') active @endif">
+                <i class="nav-icon fas fa-th-large"></i>
+                <p>
+                  Kategori Produk
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{url('category/product')}}" class="nav-link  @if($seg1=='category' AND $seg2=='product' AND $seg3!=='sub') active @endif">
+                    <i class="nav-icon far fa-circle nav-icon"></i>
+                    <p>Parent Kategori</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{url('category/product/sub')}}" class="nav-link  @if($seg1=='category' AND $seg2=='product' AND $seg3=='sub') active @endif">
                     <i class="nav-icon far fa-circle nav-icon"></i>
                     <p>Sub Kategori</p>
                   </a>

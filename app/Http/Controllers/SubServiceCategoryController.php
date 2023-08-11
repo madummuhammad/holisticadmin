@@ -11,8 +11,15 @@ class SubServiceCategoryController extends Controller
     public function index()
     {
         $data['parent']=ServiceCategory::where('level','parent')->orderBy('created_at','ASC')->get();
-        $data['category']=ServiceCategory::where('level','sub')->whereHas('parent')->orderBy('created_at','ASC')->get();
-        return view('sub-category-service',$data);
+        $data['category'] = ServiceCategory::select('service_categories.*')
+        ->join('service_categories AS parents', 'service_categories.parent_id', '=', 'parents.id')
+        ->where('service_categories.level', 'sub')
+        ->whereHas('parent')
+        ->orderBy('parents.name', 'ASC')
+        ->orderBy('service_categories.created_at', 'ASC')
+        ->get();
+
+        return view('sub-category-service', $data);
     }
 
     public function add()

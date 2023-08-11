@@ -36,7 +36,7 @@
 										</div>
 									</div>									
 								</div>
-								<table class="table table-bordered table-striped" id="donation">
+								<table class="table table-bordered table-striped" id="donations">
 									<thead>
 										<tr>
 											<th>No</th>
@@ -53,7 +53,12 @@
 										@foreach($donation as $value)
 										<tr>
 											<td>{{$no++}}</td>
-											<td>{{$value->user->first_name}} {{$value->user->last_name}}</td>
+											
+											<td>
+												@if($value->user)
+												{{$value->user->first_name}} {{$value->user->last_name}}
+												@endif
+											</td>
 											<td>{{$value->total}}</td>
 											<td>
 												<a target="_blank" href="{{$value->attachment}}">
@@ -121,7 +126,7 @@
 </div>
 @include('layouts.datatable')
 <script>
-	var dataTable=$('#donation').DataTable({
+	var dataTable=$('#donations').DataTable({
 		"paging": true,
 		"lengthChange": false,
 		"searching": true,

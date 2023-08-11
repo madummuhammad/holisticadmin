@@ -10,8 +10,15 @@ class SubProductCategoryController extends Controller
     public function index()
     {
         $data['parent']=ProductCategory::where('level','parent')->orderBy('created_at','ASC')->get();
-        $data['category']=ProductCategory::where('level','sub')->whereHas('parent')->orderBy('created_at','ASC')->get();
-        return view('sub-category-product',$data);
+        $data['category'] = ProductCategory::select('product_categories.*')
+        ->join('product_categories AS parents', 'product_categories.parent_id', '=', 'parents.id')
+        ->where('product_categories.level', 'sub')
+        ->whereHas('parent')
+        ->orderBy('parents.name', 'ASC')
+        ->orderBy('product_categories.created_at', 'ASC')
+        ->get();
+
+        return view('sub-category-product', $data);
     }
 
     public function add()
