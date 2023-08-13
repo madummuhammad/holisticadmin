@@ -26,12 +26,12 @@ class SubProductCategoryController extends Controller
         $name=request('name');
         $parent=request('parent');
         $validator=Validator::make(['name'=>$name,'parent'=>$parent],[
-            'name'=>'required',
+            'name' => 'required|unique:product_categories',
             'parent'=>'required'
         ]);
 
         if($validator->fails()){
-            return back()->withErrors($validator)->withInput(['name'=>$name,'parent'=>$parent]);
+            return back()->withErrors($validator)->withInput(['name'=>$name,'parent'=>$parent])->with('error','The name has already been taken.');
         }
 
         ProductCategory::create(['name'=>$name,'parent_id'=>$parent,'level'=>'sub']);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
 use App\Models\ProductCategory;
 use Validator;
 class ProductCategoryController extends Controller
@@ -22,11 +23,11 @@ class ProductCategoryController extends Controller
     {
         $name=request('name');
         $validator=Validator::make(['name'=>$name],[
-            'name'=>'required'
+            'name' => 'required|unique:product_categories',
         ]);
 
         if($validator->fails()){
-            return back()->withErrors($validator)->withInput(['name'=>$name]);
+            return back()->withErrors($validator)->withInput(['name'=>$name])->with('error','The name has already been taken.');
         }
 
         $category=ProductCategory::create(['name'=>$name,'level'=>'parent']);
@@ -52,6 +53,7 @@ class ProductCategoryController extends Controller
 
     public function delete($id)
     {
+        Product::where('product_category_id',$id)->delete();
         ProductCategory::where('id',$id)->delete();
         return back()->with('success','Berhasil menghapus kategori');
     }

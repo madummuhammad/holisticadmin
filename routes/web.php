@@ -59,6 +59,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/',[SettingController::class,'index']);
 		Route::patch('/',[SettingController::class,'edit']);
 		Route::patch('/privacy_policy',[SettingController::class,'privacy_policy']);
+		Route::patch('/rek_information',[SettingController::class,'rek_information']);
 		Route::patch('/about_us',[SettingController::class,'about_us']);
 		Route::patch('/donation',[SettingController::class,'donation']);
 	});

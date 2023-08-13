@@ -57,7 +57,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="{{url('assets')}}/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            <!-- <img src="{{url('assets')}}/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
           </div>
           <div class="info">
             <a href="#" class="d-block">{{Auth()->user()->username}}</a>
@@ -94,7 +94,7 @@
                 <li class="nav-item">
                   <a href="{{url('/user')}}" class="nav-link @if($seg1=='user') active @endif">
                     <i class="nav-icon fas fa-user"></i>
-                    <p>Pencari Jasa</p>
+                    <p>Tamu</p>
                   </a>
                 </li>
                 <li class="nav-item">
@@ -305,6 +305,7 @@
     $('#summernote').summernote()
     $('#about_us').summernote()
     $('#donation').summernote()
+    $('#rek_information').summernote()
     $('#reservation').daterangepicker();
     $('#scheduleFilter').daterangepicker();
     $('#bookedFilter').daterangepicker();

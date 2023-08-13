@@ -13,7 +13,7 @@
        @endif
        <form>
         <div class="input-group mb-3">
-          <input type="text" class="form-control @error('username') is-invalid @enderror" wire:model=username placeholder="Username" name="username">
+          <input type="text" wire:keydown.enter="login" class="form-control @error('username') is-invalid @enderror" wire:model=username placeholder="Username" name="username">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -26,7 +26,7 @@
           @enderror
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control @error('password') is-invalid @enderror" wire:model=password placeholder="Password" name="password">
+          <input type="password" id="password-input" class="form-control @error('password') is-invalid @enderror" wire:model=password wire:keydown.enter="login" placeholder="Password" name="password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -57,10 +57,20 @@
         </div>
 
       </form>
-<!-- <p class="mb-1">
-    <a href="forgot-password.html">I forgot my password</a>
-  </p> -->
+    </div>
+  </div>
 </div>
-</div>
-</div>
+@push('scripts')
+<script>
+  document.addEventListener('livewire:load', function () {
+    document.getElementById('password-input').addEventListener('keydown', function (event) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        alert('adsf')
+        Livewire.emit('login');
+      }
+    });
+  });
+</script>
+@endpush
 </div>

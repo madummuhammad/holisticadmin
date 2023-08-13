@@ -32,6 +32,15 @@ class SettingController extends Controller
         return back();
     }
 
+
+    public function rek_information()
+    {
+        $rek_information = request('rek_information');
+        $setting = Setting::query();
+        $setting->update(['rek_information' => $rek_information]);
+        return back();
+    }
+
     public function about_us()
     {
         $about_us = request('about_us');

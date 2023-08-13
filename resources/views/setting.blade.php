@@ -35,6 +35,36 @@
 			<div class="container-fluid">
 				<div class="row mb-2">
 					<div class="col-sm-6">
+						<h1>Payment Information</h1>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+							<form action="{{url('setting/rek_information')}}" method="POST">
+								@method('patch')
+								@csrf
+								<div class="card-body">
+									<!-- <div class="mb-1">Whatsapp</div> -->
+									<textarea id="rek_information" name="rek_information">
+										{{$setting->rek_information}}
+									</textarea>
+									<button class="btn btn-primary mt-3">Ubah</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
 						<h1>Privacy Policy</h1>
 					</div>
 				</div>

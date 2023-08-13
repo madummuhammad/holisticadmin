@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use App\Models\ServiceCategory;
+use App\Models\Service;
 
 class ServiceCategoryController extends Controller
 {
@@ -23,11 +24,11 @@ class ServiceCategoryController extends Controller
     {
         $name=request('name');
         $validator=Validator::make(['name'=>$name],[
-            'name'=>'required'
+            'name' => 'required|unique:service_categories',
         ]);
 
         if($validator->fails()){
-            return back()->withErrors($validator)->withInput(['name'=>$name]);
+            return back()->withErrors($validator)->withInput(['name'=>$name])->with('error','The name has already been taken.');
         }
 
         $category=ServiceCategory::create(['name'=>$name]);
@@ -52,6 +53,7 @@ class ServiceCategoryController extends Controller
 
     public function delete($id)
     {
+        Service::where('service_category_id',$id)->delete();
         ServiceCategory::where('id',$id)->delete();
         return back()->with('success','Berhasil menghapus kategori');
     }

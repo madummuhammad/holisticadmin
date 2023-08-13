@@ -27,12 +27,12 @@ class SubServiceCategoryController extends Controller
         $name=request('name');
         $parent=request('parent');
         $validator=Validator::make(['name'=>$name,'parent'=>$parent],[
-            'name'=>'required',
+            'name' => 'required|unique:service_categories',
             'parent'=>'required'
         ]);
 
         if($validator->fails()){
-            return back()->withErrors($validator)->withInput(['name'=>$name,'parent'=>$parent]);
+            return back()->withErrors($validator)->withInput(['name'=>$name,'parent'=>$parent])->with('error','The name has already been taken.');
         }
         ServiceCategory::create(['name'=>$name,'parent_id'=>$parent,'level'=>'sub']);
         return back()->with('success', 'Berhasil menambahkan sub kategori jasa');

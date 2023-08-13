@@ -6,7 +6,7 @@
 			<div class="container-fluid">
 				<div class="row mb-2">
 					<div class="col-sm-6">
-						<h1>Pencari Jasa</h1>
+						<h1>Tamu</h1>
 					</div>
 				</div>
 			</div>
@@ -17,7 +17,7 @@
 					<div class="col-12">
 						<div class="card">
 							<div class="card-header">
-								<h3 class="card-title">Daftar pencari jasa</h3>
+								<h3 class="card-title">Daftar Tamu</h3>
 							</div>
 							<div class="card-body">
 								<div class="row">
@@ -28,7 +28,7 @@
 												<div class="modal-content">
 													<div class="card card-primary">
 														<div class="card-header">
-															<h3 class="card-title">Tambah Pencari Jasa</h3>
+															<h3 class="card-title">Tambah Tamu</h3>
 															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 																<span aria-hidden="true">&times;</span>
 															</button>
@@ -175,7 +175,7 @@
 												<div class="modal-content">
 													<div class="card card-primary">
 														<div class="card-header">
-															<h3 class="card-title">Edit Pencari Jasa</h3>
+															<h3 class="card-title">Edit Tamu</h3>
 															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 																<span aria-hidden="true">&times;</span>
 															</button>
@@ -222,7 +222,14 @@
 																</div>
 																<div class="form-group">
 																	<label for="exampleInputPassword1">Password</label>
-																	<input type="password" class="form-control @error('password') is-invalid @enderror" name="password"  value="{{$user->password_text}}" id="exampleInputPassword1">
+																	<div class="input-group">																	
+																		<input type="password" class="form-control password @error('password') is-invalid @enderror" name="password"  value="{{$user->password_text}}" id="exampleInputPassword1">
+																		<div class="input-group-append">
+																			<button type="button" class="input-group-text eye-button">
+																				<span class="fas fa-eye"></span>
+																			</button>
+																		</div>
+																	</div>
 																	@error('password')
 																	<div class="invalid-feedback">
 																		{{$message}}
@@ -282,5 +289,20 @@
 		"autoWidth": false,
 		"responsive": true,
 	});
+	$('.eye-button').click(function() {
+		var passwordInput = $('.password');
+		var passwordError = $('#passwordError');
+		var passwordFieldType = passwordInput.attr('type');
+
+    // Toggle tampilan password atau teks biasa
+    if (passwordFieldType === 'password') {
+    	passwordInput.attr('type', 'text');
+    } else {
+    	passwordInput.attr('type', 'password');
+    }
+    
+    // Menghapus pesan error jika ada
+    passwordError.empty();
+});
 </script>
 @endsection
