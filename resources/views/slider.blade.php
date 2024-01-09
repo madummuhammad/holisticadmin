@@ -66,7 +66,7 @@
 																	</div>
 																</div>
 																<div class="form-group">
-																	<label for="exampleInputEmail1">Caption</label>
+																	<label for="exampleInputEmail1">Link</label>
 																	<input type="text" name="type" value="{{$type}}" hidden>
 																	<input type="text" class="form-control @error('caption') is-invalid @enderror" name="caption" value="{{$value->caption}}">
 																	@error('caption')
@@ -149,7 +149,7 @@
 																	</div>
 																</div>
 																<div class="form-group">
-																	<label for="exampleInputEmail1">Caption</label>
+																	<label for="exampleInputEmail1">Link</label>
 																	<input type="text" name="type" value="{{$type}}" hidden>
 																	<input type="text" class="form-control  @error('caption') is-invalid @enderror" name="caption"  value="{{old('caption')}}">
 																	@error('caption')
@@ -181,7 +181,7 @@
 									<thead>
 										<tr>
 											<th>Image</th>
-											<th>Caption</th>
+											<th>Link</th>
 											<th>Action</th>
 										</tr>
 									</thead>
@@ -237,21 +237,21 @@
 															@csrf
 															<div class="card-body">
 																@if ($value->image)
-																<img src="{{$value->image}}" width="100" class="img-fluid" id="preview{{$key}}" alt="Preview">
+																<img src="{{$value->image}}" width="100" class="img-fluid" id="preview{{$key+1}}" alt="Preview">
 																@else
-																<img src="{{ asset('path/to/default/image.jpg') }}" width="100" id="preview{{$key}}" class="img-fluid" alt="Default Image">
+																<img src="{{ asset('path/to/default/image.jpg') }}" width="100" id="preview{{$key+1}}" class="img-fluid" alt="Default Image">
 																@endif
 																<div class="form-group">
 																	<label for="exampleInputFile">File input</label>
 																	<div class="input-group">
 																		<div class="custom-file">
-																			<input type="file" class="custom-file-input" name="image" onchange="updateFilename(this)" id="{{$key}}">
+																			<input type="file" class="custom-file-input" name="image" onchange="updateFilename(this)" id="{{$key+1}}">
 																			<label class="custom-file-label" for="exampleInputFile">Pilih file</label>
 																		</div>
 																	</div>
 																</div>
 																<div class="form-group">
-																	<label for="exampleInputEmail1">Caption</label>
+																	<label for="exampleInputEmail1">Link</label>
 																	<input type="text" name="type" value="{{$type}}" hidden>
 																	<input type="text" class="form-control @error('caption') is-invalid @enderror" name="caption" value="{{$value->caption}}">
 																	@error('caption')

@@ -26,10 +26,10 @@
           @enderror
         </div>
         <div class="input-group mb-3">
-          <input type="password" id="password-input" class="form-control @error('password') is-invalid @enderror" wire:model=password wire:keydown.enter="login" placeholder="Password" name="password">
-          <div class="input-group-append">
+          <input type="password" id="password-input" class="form-control @error('password') is-invalid @enderror" wire:model="password" wire:keydown.enter="login" placeholder="Password" name="password">
+          <div class="input-group-append" style="cursor:pointer">
             <div class="input-group-text">
-              <span class="fas fa-lock"></span>
+              <span id="password-toggle" class="fas fa-eye"></span>
             </div>
           </div>
           @error('password')
@@ -38,6 +38,7 @@
           </div>
           @enderror
         </div>
+
         <div class="row">
           <div class="col-8">
 
@@ -66,11 +67,31 @@
     document.getElementById('password-input').addEventListener('keydown', function (event) {
       if (event.key === 'Enter') {
         event.preventDefault();
-        alert('adsf')
         Livewire.emit('login');
       }
     });
   });
+
 </script>
 @endpush
+<script>
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const passwordInput = document.getElementById('password-input');
+    const passwordToggle = document.getElementById('password-toggle');
+    
+    passwordToggle.addEventListener('click', function () {
+      console.log(passwordInput.type)
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        passwordToggle.classList.remove('fa-eye');
+        passwordToggle.classList.add('fa-eye-slash');
+      } else {
+        passwordInput.type = 'password';
+        passwordToggle.classList.remove('fa-eye-slash');
+        passwordToggle.classList.add('fa-eye');
+      }
+    });
+  });
+</script>
 </div>

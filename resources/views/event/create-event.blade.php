@@ -33,8 +33,6 @@
 												</div>
 												@enderror
 											</div>
-										</div>
-										<div class="col-lg-6 col-12">						
 											<div class="form-group">
 												<label for="exampleInputFile">Image</label>
 												<div class="input-group">
@@ -44,6 +42,9 @@
 													</div>
 												</div>
 											</div>
+										</div>
+										<div class="col-lg-6 col-12">						
+											<img src="" id="preview" class="img-fluid" alt="">
 										</div>
 										<div class="col-md-12">
 											<div class="card card-outline card-info">
@@ -74,3 +75,18 @@
 </div>
 </div>
 @endsection
+<script>
+	function updateFilename(input) {
+		var filename = input.files[0].name;
+		var label = input.nextElementSibling;
+		label.innerText = filename;
+
+		console.log(input.id);
+		var reader = new FileReader();
+		reader.onload = function(e) {
+			var preview = document.getElementById('preview');
+			preview.src = e.target.result;
+		};
+		reader.readAsDataURL(input.files[0]);
+	}
+</script>

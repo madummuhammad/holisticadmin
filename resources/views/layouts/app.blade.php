@@ -117,7 +117,7 @@
                 <li class="nav-item">
                   <a href="{{url('slider/homepage')}}" class="nav-link @if($seg1=='slider' AND $seg2=='homepage') active @endif">
                     <i class="nav-icon far fa-images"></i>
-                    <p>Homepage</p>
+                    <p>Promotions</p>
                   </a>
                 </li>
                 <li class="nav-item">

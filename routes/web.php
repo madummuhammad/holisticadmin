@@ -61,6 +61,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::patch('/privacy_policy',[SettingController::class,'privacy_policy']);
 		Route::patch('/rek_information',[SettingController::class,'rek_information']);
 		Route::patch('/about_us',[SettingController::class,'about_us']);
+		Route::patch('/change_password',[SettingController::class,'change_password']);
 		Route::patch('/donation',[SettingController::class,'donation']);
 	});
 	Route::group(['prefix'=>'faq'],function(){

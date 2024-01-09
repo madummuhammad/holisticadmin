@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Schedule;
 class ScheduleController extends Controller
 {
-   public function index()
-   {
-    $data['schedule']=Schedule::with('service.user','by_user')->get();
+ public function index()
+ {
+    $data['schedule']=Schedule::whereHas('service')->with('service.user','by_user')->get();
     return view('schedule',$data);
 }
 
